@@ -673,7 +673,7 @@ with col1:
         loja_rank[["Loja", "Média"]]
         .style
         .format({"Média": "{:.2%}"})
-        .applymap(estilo_media, subset=["Média"])
+        .map(estilo_media, subset=["Média"])
         .set_table_styles([
             {"selector": "th", "props": [("font-weight", "700")]},
             {"selector": "td", "props": [("font-weight", "700")]}
@@ -719,7 +719,7 @@ with col2:
         topico_rank[["Tópico", "Média"]]
         .style
         .format({"Média": "{:.2%}     "})
-        .applymap(estilo_media, subset=["Média"])
+        .map(estilo_media, subset=["Média"])
         .set_table_styles([
             {"selector": "th", "props": [("font-weight", "700")]},
             {"selector": "td", "props": [("font-weight", "700")]}
@@ -767,7 +767,7 @@ with col3:
         tag_rank[["Tag", "Média"]]
         .style
         .format({"Média": "{:.2%}"})
-        .applymap(estilo_media, subset=["Média"])
+        .map(estilo_media, subset=["Média"])
         .set_table_styles([
             {"selector": "th", "props": [("font-weight", "700")]},
             {"selector": "td", "props": [("font-weight", "700")]}
