@@ -243,7 +243,6 @@ with st.spinner("Carregando dados... aguarde alguns segundos."):
 # =========================================================
 # FILTROS
 # =========================================================
-st.expander("Filtros", expanded=True, icon=":material/thumb_up:")
 st.sidebar.title("Filtros", )
 
 list_meses = [
