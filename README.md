@@ -1,22 +1,34 @@
-# 📋 Streamlit App Checklists
+# 🔍 Dashboard de Checklists de Inspeção
 
-Uma aplicação web moderna e intuitiva para gerenciar tarefas e listas de verificação de forma simples e eficiente.
+Uma aplicação web moderna e poderosa para gerenciar checklists de inspeção com eficiência, rastreabilidade e facilidade de uso.
 
 ---
 
 ## 🎯 Sobre o Projeto
 
-Este é um aplicativo desenvolvido com **Streamlit** que oferece uma solução elegante para organizar e acompanhar suas atividades diárias. Com uma interface limpa e responsiva, você pode criar, editar e marcar tarefas como concluídas de maneira rápida e prática.
+O **Dashboard de Checklists de Inspeção** é uma solução desenvolvida com **Streamlit** que oferece um ambiente intuitivo e profissional para realizar, acompanhar e documentar inspeções em seus processos, equipamentos e atividades. Perfeito para empresas que necessitam de controle de qualidade, conformidade operacional ou auditorias regulares.
 
-### ✨ Principais Características
+Com uma interface limpa, responsiva e fácil de usar, você pode:
+- Criar checklists customizados para diferentes tipos de inspeção
+- Registrar resultados em tempo real
+- Manter histórico completo das inspeções realizadas
+- Gerar relatórios e análises de conformidade
+- Facilitar o rastreamento e a responsabilidade das atividades
 
-- ✅ **Criar Tarefas** - Adicione novas tarefas em segundos
-- 📝 **Editar Tarefas** - Modifique tarefas já existentes
-- 🗑️ **Remover Tarefas** - Delete tarefas que não precisa mais
-- ✔️ **Marcar Concluídas** - Acompanhe o progresso das suas atividades
-- 💾 **Persistência de Dados** - Seus dados são salvos automaticamente
-- 🎨 **Interface Intuitiva** - Design limpo e fácil de usar
-- 📱 **Responsivo** - Funciona perfeitamente em diferentes dispositivos
+---
+
+## ✨ Principais Características
+
+- ✅ **Criar Checklists de Inspeção** - Desenvolva checklists estruturados e reutilizáveis
+- 📋 **Gerenciar Itens de Inspeção** - Adicione, edite ou remova itens conforme necessário
+- ✔️ **Registrar Conformidade** - Marque itens como aprovado, reprovado ou requer ação
+- 📝 **Anotações Detalhadas** - Adicione observações e comentários a cada item
+- 💾 **Persistência de Dados** - Todos os dados de inspeção são salvos automaticamente
+- 📊 **Dashboard Intuitivo** - Visualize estatísticas e status das inspeções
+- 🔄 **Rastreabilidade Completa** - Mantenha histórico de todas as inspeções realizadas
+- 🎨 **Interface Profissional** - Design limpo, moderno e intuitivo
+- 📱 **Responsivo** - Funciona perfeitamente em computadores, tablets e smartphones
+- 🔒 **Dados Seguros** - Seus dados de inspeção são mantidos de forma segura
 
 ---
 
@@ -60,7 +72,7 @@ A aplicação será aberta automaticamente no seu navegador em `http://localhost
 
 As principais bibliotecas utilizadas são:
 
-- **Streamlit** - Framework para criar aplicações web interativas
+- **Streamlit** - Framework para criar aplicações web interativas de alto desempenho
 - Outras dependências estão listadas em `requirements.txt`
 
 ---
@@ -79,10 +91,43 @@ Streamlit-app-checklists/
 
 ## 💡 Como Usar
 
-1. **Adicionar uma tarefa**: Digite o texto da tarefa no campo de entrada e clique em "Adicionar"
-2. **Marcar como concluída**: Use o checkbox ao lado da tarefa para marcar como feita
-3. **Editar uma tarefa**: Clique no botão editar e modifique o texto
-4. **Remover uma tarefa**: Clique no botão remover para deletar a tarefa
+### Workflow Básico
+
+1. **Criar um Novo Checklist de Inspeção**
+   - Clique em "Novo Checklist"
+   - Digite o nome da inspeção e selecione o tipo
+   - Defina os itens que serão verificados
+
+2. **Adicionar Itens de Inspeção**
+   - Na seção de itens, clique em "Adicionar Item"
+   - Descreva o item a ser inspecionado
+   - Defina critérios de aprovação se necessário
+
+3. **Realizar a Inspeção**
+   - Marque cada item como: ✅ Aprovado, ❌ Reprovado ou ⚠️ Requer Ação
+   - Adicione observações ou comentários relevantes
+   - Registre evidências ou fotos se necessário
+
+4. **Gerenciar Inspeções**
+   - Visualize o histórico de todas as inspeções
+   - Edite inspeções anteriores se necessário
+   - Remova registros obsoletos
+
+5. **Gerar Relatórios**
+   - Acesse o painel de relatórios
+   - Analise estatísticas de conformidade
+   - Exporte dados para análises externas
+
+---
+
+## 👥 Casos de Uso
+
+- **Inspeção de Equipamentos** - Monitorar condições e manutenção preventiva
+- **Controle de Qualidade** - Validar conformidade de produtos e processos
+- **Segurança no Trabalho** - Auditar ambientes e práticas de segurança
+- **Conformidade Operacional** - Garantir aderência a procedimentos e regulamentações
+- **Inspeção Predial** - Verificar integridade de instalações e infraestrutura
+- **Gestão de Projetos** - Acompanhar entrega de atividades e milestones
 
 ---
 
@@ -106,13 +151,15 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ## 📧 Contato
 
-Se tiver dúvidas ou sugestões, sinta-se à vontade para abrir uma [issue](https://github.com/herick-ferreira/Streamlit-app-checklists/issues) ou entrar em contato.
+Se tiver dúvidas, sugestões ou problemas, sinta-se à vontade para:
+- Abrir uma [issue](https://github.com/herick-ferreira/Streamlit-app-checklists/issues)
+- Entrar em contato através do GitHub
 
 ---
 
 ## 🙏 Agradecimentos
 
-Obrigado por usar este projeto! Se achar útil, considere deixar uma ⭐ no repositório.
+Obrigado por usar este projeto! Se o achar útil para suas inspeções e processos de qualidade, considere deixar uma ⭐ no repositório.
 
 ---
 
