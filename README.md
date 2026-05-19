@@ -1,5 +1,10 @@
 # 🔍 Dashboard de Checklists de Inspeção
 
+[Link do app]([https://github.com/herick-ferreira](https://dash-checklists.streamlit.app/))
+
+<img width="1839" height="907" alt="image" src="https://github.com/user-attachments/assets/93144df3-0b7c-46c6-af55-273dc175cd69" />
+
+
 Uma aplicação web moderna e poderosa para gerenciar checklists de inspeção com eficiência, rastreabilidade e facilidade de uso.
 
 ---
