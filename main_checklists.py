@@ -250,37 +250,116 @@ list_meses = [
     "jul", "ago", "set", "out", "nov", "dez"
 ]
 
-anos = sorted(df["Ano"].dropna().unique())
-meses_unicos = df["Mês"].apply(lambda x: list_meses[int(x)-1]).dropna().unique()
-meses = sorted(meses_unicos, key=lambda x: list_meses.index(x))
+def aplicar_filtros(base_df, filtros, ignorar=None):
+    df_tmp = base_df.copy()
+    ignorar = ignorar or set()
 
-lojas = sorted(df["Loja"].dropna().unique())
-topicos = sorted(df["Tópico"].dropna().unique())
-tags = sorted(df["Tag"].dropna().unique())
+    if "Ano" not in ignorar and filtros.get("Ano"):
+        df_tmp = df_tmp[df_tmp["Ano"].isin(filtros["Ano"])]
+
+    if "Mês" not in ignorar and filtros.get("Mês"):
+        df_tmp = df_tmp[df_tmp["Mês"].isin(filtros["Mês"])]
+
+    if "Loja" not in ignorar and filtros.get("Loja"):
+        df_tmp = df_tmp[df_tmp["Loja"].isin(filtros["Loja"])]
+
+    if "Tópico" not in ignorar and filtros.get("Tópico"):
+        df_tmp = df_tmp[df_tmp["Tópico"].isin(filtros["Tópico"])]
+
+    if "Tag" not in ignorar and filtros.get("Tag"):
+        df_tmp = df_tmp[df_tmp["Tag"].isin(filtros["Tag"])]
+
+    return df_tmp
+
+
+def mes_num_para_nome(mes_num):
+    return list_meses[int(mes_num) - 1]
+
+
+def mes_nome_para_num(mes_nome):
+    return str(list_meses.index(mes_nome) + 1).zfill(2)
+
+
+filtros_atuais = {
+    "Ano": st.session_state.get("filtro_ano", []),
+    "Mês": st.session_state.get("filtro_mes", []),
+    "Loja": st.session_state.get("filtro_loja", []),
+    "Tópico": st.session_state.get("filtro_topico", []),
+    "Tag": st.session_state.get("filtro_tag", []),
+}
+
+anos = sorted(
+    aplicar_filtros(df, filtros_atuais, {"Ano"})["Ano"]
+    .dropna()
+    .unique()
+)
+filtros_atuais["Ano"] = [ano for ano in filtros_atuais["Ano"] if ano in anos]
+st.session_state["filtro_ano"] = filtros_atuais["Ano"]
+
+meses_base = aplicar_filtros(df, filtros_atuais, {"Mês"})["Mês"].dropna().unique()
+meses = sorted(
+    [mes_num_para_nome(mes) for mes in meses_base],
+    key=lambda x: list_meses.index(x)
+)
+mes_nums_disponiveis = {mes_nome_para_num(mes) for mes in meses}
+filtros_atuais["Mês"] = [mes for mes in filtros_atuais["Mês"] if mes in mes_nums_disponiveis]
+st.session_state["filtro_mes"] = filtros_atuais["Mês"]
+
+lojas = sorted(
+    aplicar_filtros(df, filtros_atuais, {"Loja"})["Loja"]
+    .dropna()
+    .unique()
+)
+filtros_atuais["Loja"] = [loja for loja in filtros_atuais["Loja"] if loja in lojas]
+st.session_state["filtro_loja"] = filtros_atuais["Loja"]
+
+topicos = sorted(
+    aplicar_filtros(df, filtros_atuais, {"Tópico"})["Tópico"]
+    .dropna()
+    .unique()
+)
+filtros_atuais["Tópico"] = [topico for topico in filtros_atuais["Tópico"] if topico in topicos]
+st.session_state["filtro_topico"] = filtros_atuais["Tópico"]
+
+tags = sorted(
+    aplicar_filtros(df, filtros_atuais, {"Tag"})["Tag"]
+    .dropna()
+    .unique()
+)
+filtros_atuais["Tag"] = [tag for tag in filtros_atuais["Tag"] if tag in tags]
+st.session_state["filtro_tag"] = filtros_atuais["Tag"]
 
 ano_sel = st.sidebar.multiselect(
     "Ano",
-    anos
+    anos,
+    key="filtro_ano"
 )
 
-mes_sel = st.sidebar.multiselect(
+mes_sel_nomes = st.sidebar.multiselect(
     "Mês",
-    meses
+    meses,
+    default=[mes_num_para_nome(mes) for mes in filtros_atuais["Mês"]],
+    key="filtro_mes_nomes"
 )
+mes_sel = [mes_nome_para_num(mes) for mes in mes_sel_nomes]
+st.session_state["filtro_mes"] = mes_sel
 
 loja_sel = st.sidebar.multiselect(
     "Loja",
-    lojas
+    lojas,
+    key="filtro_loja"
 )
 
 topico_sel = st.sidebar.multiselect(
     "Tópico",
-    topicos
+    topicos,
+    key="filtro_topico"
 )
 
 tag_sel = st.sidebar.multiselect(
     "Tag",
-    tags
+    tags,
+    key="filtro_tag"
 )
 
 # =========================================================
@@ -628,9 +707,9 @@ with col2:
 #             height=520,
 #             scrolling=False
 #         )
-        
-        
-        
+
+
+
 def estilo_media(valor):
     if pd.isna(valor):
         return ""
@@ -640,7 +719,7 @@ def estilo_media(valor):
         return "color: #FDBA3B; font-weight: 700;"
     return "color: #FF4B4B; font-weight: 700;"
 
-        
+
 col1, col2, col3 = st.columns(3)
 
 # ======================================================
@@ -712,7 +791,7 @@ with col2:
         by="Média",
         ascending=False
     )
-    
+
 
     topico_table = (
         topico_rank[["Tópico", "Média"]]
@@ -761,7 +840,7 @@ with col3:
         by="Média",
         ascending=False
     )
-    
+
     tag_table = (
         tag_rank[["Tag", "Média"]]
         .style
@@ -772,20 +851,20 @@ with col3:
             {"selector": "td", "props": [("font-weight", "700")]}
         ])
     )
-    
-    
+
+
 
     st.dataframe(
         tag_table,
         use_container_width=True,
         height=320,
         hide_index=True
-        
+
     )
 
     st.markdown('</div>', unsafe_allow_html=True)
-    
-    
+
+
 col1 = st.columns(1)
 
 
@@ -800,7 +879,7 @@ with col1[0]:
     tabela_geral_base = df_filtrado[[
         "Data", "Loja", "Tópico", "Tag", "Questão", "Resposta", "Observação"
     ]]
-    
+
     tabela_geral_base['Data'] = tabela_geral_base['Data'].dt.strftime('%d/%m/%Y')
 
     total_rows = len(tabela_geral_base)
