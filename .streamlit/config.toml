@@ -2,6 +2,6 @@
 primaryColor = "#0e0253"
 backgroundColor = "#e4e6ea"
 secondaryBackgroundColor = "#262730"
-textColor = "#fafafa"
+textColor = "#0d0d0d"
 font = "sans serif"
 base = "light" # Força a base escura nativa
