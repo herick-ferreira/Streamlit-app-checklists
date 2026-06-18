@@ -381,9 +381,8 @@ if ano_sel:
 
 if mes_sel:
     # Converter nomes de meses de volta para números
-    mes_nums = [str(list_meses.index(m) + 1).zfill(2) for m in mes_sel]
     df_filtrado = df_filtrado[
-        df_filtrado["Mês"].isin(mes_nums)
+        df_filtrado["Mês"].isin(mes_sel)
     ]
 
 if loja_sel:
@@ -595,118 +594,6 @@ with col2:
     )
 
     st.markdown('</div>', unsafe_allow_html=True)
-
-# # =========================================================
-# # GRÁFICO 2 COM SCROLL
-# # =========================================================
-# with col2:
-
-#     st.subheader("Ranking de Lojas")
-
-#     # FULLSCREEN NATIVO STREAMLIT
-#     chart_container = st.container(border=False)
-
-#     df_rank = (
-#         df_group
-#         .groupby("Loja", as_index=False)
-#         .agg({"Média": "mean"})
-#         .sort_values(by="Média")
-#     )
-
-#     df_rank["Color"] = df_rank["Média"].apply(
-#         lambda x: "#ff4b4b" if x < 0.88 else "#22c55e"
-#     )
-
-#     altura_grafico = max(len(df_rank) * 45, 400)
-
-#     fig2 = go.Figure()
-
-#     fig2.add_trace(go.Bar(
-#         x=df_rank["Média"],
-#         y=df_rank["Loja"],
-#         orientation='h',
-
-#         marker=dict(
-#             color=df_rank["Color"]
-#         ),
-
-#         text=[
-#             f"{v:.1%}".replace(".", ",")
-#             for v in df_rank["Média"]
-#         ],
-
-#         # LABEL DENTRO DA BARRA
-#         textposition='inside',
-
-#         insidetextanchor='end',
-
-#         textfont=dict(
-#             size=13,
-#             color="white"
-#         )
-#     ))
-
-#     fig2.update_layout(
-
-#         height=altura_grafico,
-
-#         margin=dict(
-#             l=260,   # espaço para nomes
-#             r=40,
-#             t=30,
-#             b=30
-#         ),
-
-#         showlegend=False,
-
-#         paper_bgcolor='#0E1117',
-#         plot_bgcolor='#0E1117',
-
-#         bargap=0.35,
-
-#         font=dict(
-#             color='white',
-#             size=13
-#         ),
-
-#         xaxis=dict(
-#             tickformat=".0%",
-#             color="white",
-#             gridcolor="rgba(255,255,255,0.08)"
-#         ),
-
-#         yaxis=dict(
-#             color="white",
-#             automargin=True
-#         )
-#     )
-
-#     graph_html = fig2.to_html(
-#         full_html=False,
-#         include_plotlyjs='cdn',
-#         config={
-#             'displayModeBar': False
-#         }
-#     )
-
-#     with chart_container:
-
-#         components.html(
-#             f"""
-#             <div style="
-#                 height:500px;
-#                 overflow-y:auto;
-#                 overflow-x:hidden;
-#                 border-radius:10px;
-#                 background:#0E1117;
-#                 padding:5px;
-#             ">
-#                 {graph_html}
-#             </div>
-#             """,
-#             height=520,
-#             scrolling=False
-#         )
 
 
 
